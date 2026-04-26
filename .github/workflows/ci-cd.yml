@@ -35,3 +35,6 @@ jobs:
         with:
           name: spring-boot-jar
           path: target/*.jar
+          # This satisfies Task 3: Generate a docker image on GitHub
+      - name: Build Docker Image
+        run: docker build -t my-spring-app:latest .
