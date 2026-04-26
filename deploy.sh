@@ -12,5 +12,5 @@ sudo systemctl enable docker
 sudo docker login -u $1 -p $2
 
 # Pull the latest image and run the compose file
-sudo docker compose -f /home/ubuntu/compose.yaml pull
-sudo docker compose -f /home/ubuntu/compose.yaml up -d
+sudo docker compose -f /home/ec2-user/compose.yaml pull
+sudo docker compose -f /home/ec2-user/compose.yaml up -d

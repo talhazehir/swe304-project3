@@ -58,7 +58,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "compose.yaml,deploy.sh"
-          target: "/home/ubuntu/"
+          target: "/home/ec2-user/"
 
       - name: Execute Deployment Script via SSH
         uses: appleboy/ssh-action@v1.0.3
@@ -67,5 +67,5 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            chmod +x /home/ubuntu/deploy.sh
-            /home/ubuntu/deploy.sh ${{ secrets.DOCKERHUB_USERNAME }} ${{ secrets.DOCKERHUB_TOKEN }}
+            chmod +x /home/ec2-user/deploy.sh
+            /home/ec2-user/deploy.sh ${{ secrets.DOCKERHUB_USERNAME }} ${{ secrets.DOCKERHUB_TOKEN }}
