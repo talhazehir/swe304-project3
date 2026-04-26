@@ -1,6 +1,22 @@
 services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: patent_user
+      POSTGRES_PASSWORD: patent_password
+      POSTGRES_DB: patent_db
+    restart: always
+
   web:
     image: talhazehir/swe304-project3:latest
     ports:
-      - "80:8080" # Maps the cloud's port 80 to your Spring Boot port 8080
+      - "80:8080"
+    environment:
+      # Bu ayarlar Spring Boot'un otomatik olarak Docker içindeki veritabanına bağlanmasını sağlar
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/patent_db
+      - SPRING_DATASOURCE_USERNAME=patent_user
+      - SPRING_DATASOURCE_PASSWORD=patent_password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - db
     restart: always

@@ -1,5 +1,5 @@
-# Use the same Java 26 version we specified in our workflow
-FROM eclipse-temurin:26-jdk
+# Use the same Java 25 version we specified in our workflow
+FROM eclipse-temurin:25-jdk
 
 # Create a volume for temporary files
 VOLUME /tmp
