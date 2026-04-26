@@ -50,3 +50,22 @@ jobs:
         run: |
           docker tag my-spring-app:latest ${{ secrets.DOCKERHUB_USERNAME }}/swe304-project3:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/swe304-project3:latest
+          # This satisfies Task 5: Transfer script and trigger compose.yml
+      - name: Copy files via SCP (SFTP)
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "compose.yaml,deploy.sh"
+          target: "/home/ubuntu/"
+
+      - name: Execute Deployment Script via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            chmod +x /home/ubuntu/deploy.sh
+            /home/ubuntu/deploy.sh ${{ secrets.DOCKERHUB_USERNAME }} ${{ secrets.DOCKERHUB_TOKEN }}

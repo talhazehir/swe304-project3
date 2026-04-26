@@ -1,0 +1,6 @@
+services:
+  web:
+    image: talhazehir/swe304-project3:latest
+    ports:
+      - "80:8080" # Maps the cloud's port 80 to your Spring Boot port 8080
+    restart: always
