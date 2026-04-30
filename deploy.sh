@@ -3,7 +3,7 @@
 # Update package list and install Docker for Amazon Linux
 sudo yum update -y
 sudo yum install -y docker
-#test
+
 # Ensure Docker is running
 sudo systemctl start docker
 sudo systemctl enable docker
