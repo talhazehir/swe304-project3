@@ -94,3 +94,4 @@ jobs:
           script: |
             chmod +x /home/ec2-user/deploy.sh
             /home/ec2-user/deploy.sh ${{ secrets.DOCKERHUB_USERNAME }} ${{ secrets.DOCKERHUB_TOKEN }}
+      #test
